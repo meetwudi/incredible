@@ -1,0 +1,13 @@
+.drop-area {
+  height: 300px;
+  width: 300px;
+  box-sizing: border-box;
+  border: 5px solid skyblue;
+  margin: 30px auto;
+  line-height: 300px;
+  text-align: center;
+}
+
+.drop-area--hover {
+  border-color: green;
+}
