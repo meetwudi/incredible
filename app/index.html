@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="incredible">
 <head>
   <meta charset="UTF-8">
   <title>Incredible</title>
@@ -8,28 +8,28 @@
 </head>
 <body>
   <div class="container">
-    <main class="J_drop-area drop-area">
+    <main class="drop-area" in-drop-file>
       Drag &amp; Drop You Image Here!
     </main>
   </div>
   
-  <div class="container">
+  <div class="container" ng-controller="SettingController">
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
-        <form role="form" class="J_setting-form">
+        <form role="form" novalidate>
           <div class="form-group">
             <label for="bucket_name">Bucket Name</label>
-            <input type="text" class="form-control" id="bucket_name">
+            <input in-pastable type="text" class="form-control" id="bucket_name" ng-model="setting.bucketName">
           </div>
           <div class="form-group">
             <label for="access_key">Access Key</label>
-            <input type="text" class="form-control" id="access_key">
+            <input in-pastable type="text" class="form-control" id="access_key" ng-model="setting.accessKey">
           </div>
           <div class="form-group">
             <label for="secret_key">Secret Key</label>
-            <input type="text" class="form-control" id="secret_key">
+            <input in-pastable type="text" class="form-control" id="secret_key" ng-model="setting.secretKey">
           </div>
-          <button type="submit" class="btn btn-default btn-primary J_apply-key">Apply</button>
+          <button type="submit" class="btn btn-default btn-primary" ng-click="applySetting()">Apply</button>
         </form>
       </div>
     </div>
@@ -38,7 +38,11 @@
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/jquery.hotkeys/jquery.hotkeys.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="scripts/incredible.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
   
+  <script src="scripts/controllers.js"></script>
+  <script src="scripts/services.js"></script>
+  <script src="scripts/directives.js"></script>
+  <script src="scripts/app.js"></script>
 </body>
 </html>
