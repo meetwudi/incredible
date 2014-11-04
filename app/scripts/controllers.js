@@ -11,4 +11,16 @@ angular.module('incredible.controllers', [])
     $scope.setting = setting;
     $scope.$apply();
   });
+})
+
+.controller('RecordController', function($scope, recordService) {
+  $scope.records = [];
+  $scope.refreshRecords = function() {
+    recordService.getAll(function(records) {
+      $scope.records = records;
+      $scope.$apply();
+    });
+  };
+  $scope.$on('recordService:recordsChanged', $scope.refreshRecords);
+  $scope.refreshRecords();
 });

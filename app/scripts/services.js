@@ -10,7 +10,7 @@ angular.module('incredible.services', [])
 })
 
 
-.factory('uploadService', function(nodeModService, settingService) {
+.factory('uploadService', function(nodeModService, settingService, recordService) {
   var qiniu = require('qiniu'),
     fs = require('fs');
 
@@ -30,10 +30,14 @@ angular.module('incredible.services', [])
 
       qiniu.io.putFile(token, key, localFile, extra, function(err, ret) {
         if(!err) {
+          var url = 'http://' + bucketName + '.qiniudn.com/' + ret.key;
           var gui = require('nw.gui'),
           clipboard = gui.Clipboard.get();
-          clipboard.set('http://' + bucketName + '.qiniudn.com/' + ret.key);
+          clipboard.set(url);
           alert('Image url copied to clipboard.');
+          recordService.insert({
+            url: url
+          });
         } else {
           console.log(err);
         }
@@ -49,8 +53,8 @@ angular.module('incredible.services', [])
 })
 
 
-.factory('dbService', function(nodeModService) {
-  var DataStore = nodeModService.nedb,
+.factory('dbService', function() {
+  var DataStore = require('nedb'),
     db = {
       setting: new DataStore({ filename: 'data/setting.nedb', autoload: true }),
       record: new DataStore({ filename: 'data/record.nedb', autoload: true })
@@ -71,8 +75,33 @@ angular.module('incredible.services', [])
     console.log(setting);
     db.remove({}, { multi: true }, function(err, numRemoved) {
       db.insert(setting, function(err, newDoc) {
-        done();
+        done(numRemoved);
       });
+    });
+  };
+})
+
+
+.service('recordService', function(dbService, $rootScope) {
+  var db = dbService.record;
+  this.getAll = function(done) {
+    db.find({}).sort({ createdAt: -1 }).exec(function(err, docs) {
+      done(docs);
+    });
+  };
+  this.remove = function(doc, done) {
+    done = done ? done : function() {};
+    db.remove(doc, function(err, numRemoved) {
+      done(numRemoved);
+      $rootScope.$broadcast('recordService:recordsChanged');
+    });
+  };
+  this.insert = function(doc, done) {
+    done = done ? done : function() {};
+    doc.createdAt = Date.now();
+    db.insert(doc, function(err, doc) {
+      done(doc);
+      $rootScope.$broadcast('recordService:recordsChanged')
     });
   };
 });

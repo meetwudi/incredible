@@ -9,40 +9,37 @@
 <body>
   <div class="container">
     <main class="drop-area" in-drop-file>
-      Drag &amp; Drop You Image Here!
+      Drag &amp; Drop Your Image Here!
     </main>
   </div>
   
-  <div class="container" ng-controller="SettingController">
+  <div class="container" >
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
-        <form role="form" novalidate>
-          <div class="form-group">
-            <label for="bucket_name">Bucket Name</label>
-            <input in-pastable type="text" class="form-control" id="bucket_name" ng-model="setting.bucketName">
-          </div>
-          <div class="form-group">
-            <label for="access_key">Access Key</label>
-            <input in-pastable type="text" class="form-control" id="access_key" ng-model="setting.accessKey">
-          </div>
-          <div class="form-group">
-            <label for="secret_key">Secret Key</label>
-            <input in-pastable type="text" class="form-control" id="secret_key" ng-model="setting.secretKey">
-          </div>
-          <button type="submit" class="btn btn-default btn-primary" ng-click="applySetting()">Apply</button>
-        </form>
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation"><a href="#/">Records</a></li>
+          <li role="presentation"><a href="#/setting">Setting</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <div ng-view></div>
       </div>
     </div>
   </div>
+
   
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/jquery.hotkeys/jquery.hotkeys.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
   
   <script src="scripts/controllers.js"></script>
   <script src="scripts/services.js"></script>
   <script src="scripts/directives.js"></script>
+  <script src="scripts/routes.js"></script>
   <script src="scripts/app.js"></script>
 </body>
 </html>
