@@ -8,10 +8,10 @@ angular.module('incredible.directives', [])
         return false;
       });
       ele.bind('dragenter', function(e) {
-        $(this).addClass('drop-area--hover');
+        $(this).addClass('in-drop-area--hover');
       });
       ele.bind('drop dragleave', function(e) {
-        $(this).removeClass('drop-area--hover');
+        $(this).removeClass('in-drop-area--hover');
       });
       ele.bind('drop', function(e) {
         e.preventDefault();
@@ -28,7 +28,7 @@ angular.module('incredible.directives', [])
   }
 })
 
-.directive('inPastable', function(nodeModService) {
+.directive('inPastable', function() {
   return {
     scope: {},
     require: 'ngModel',
@@ -41,5 +41,12 @@ angular.module('incredible.directives', [])
         // $(ele).val(clipboard.get('text'));
       });
     }
+  }
+})
+
+
+.directive('inRecord', function() {
+  return {
+    templateUrl: 'scripts/directive-templates/in-record.html'
   }
 });

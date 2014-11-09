@@ -1,4 +1,5 @@
-.drop-area {
+/* directive in-drop-area*/
+.in-drop-area {
   height: 300px;
   width: 300px;
   box-sizing: border-box;
@@ -8,6 +9,32 @@
   text-align: center;
 }
 
-.drop-area--hover {
+.in-drop-area--hover {
   border-color: green;
+}
+
+/* directive: in-record */
+.in-record {
+  font-size: 12px;
+}
+
+  .in-record .thumbnail {
+    height: 40px;
+    width: 40px;
+  }
+
+  .in-record .thumbnail-wrap {
+    float: left;
+  }
+
+.in-record-odd {
+  background: skyblue;
+  color: whitesmoke;
+}
+
+
+
+/* utils */
+.clearfix {
+  overflow: auto;
 }
