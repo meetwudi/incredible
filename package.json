@@ -25,8 +25,12 @@
     "qiniu": "^6.1.6"
   },
   "window": {
-    "min_width": 400,
-    "max_width": 400,
-    "width": 400
-  }
+    "min_width": 860,
+    "max_width": 860,
+    "width": 860,
+    "max_height": 513,
+    "min_height": 513,
+    "height": 513
+  },
+  "toolbar": true
 }
