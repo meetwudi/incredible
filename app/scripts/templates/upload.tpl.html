@@ -16,7 +16,7 @@
 
 <div class="row" ng-if="upload.uploading">
   <div class="progress mt20">
-    <div class="progress-bar" role="progressbar" aria-valuenow="{{upload.uploadedTotal*100/upload.uploadTotal}}" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar" role="progressbar" aria-valuenow="{{upload.uploadedTotal*100/upload.uploadTotal}}" aria-valuemin="0" aria-valuemax="100" style="width: {{upload.uploadedTotal*100/upload.uploadTotal}}%;">
     {{upload.uploadedTotal*100/upload.uploadTotal | number:0}}%
   </div>
 </div>
