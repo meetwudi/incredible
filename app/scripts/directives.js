@@ -62,4 +62,18 @@ angular.module('incredible.directives', [])
   return {
     templateUrl: 'scripts/directive-templates/in-record.html'
   }
+})
+
+
+.directive('inNav', function($route) {
+  return {
+    templateUrl: 'scripts/directive-templates/in-nav.html',
+    link: function(scope, ele, attrs) {
+      scope.nav = {};
+      scope.$on('$routeChangeSuccess', function() {
+        console.log($route);
+        scope.nav.currentController = $route.current.$$route.controller;
+      });
+    }
+  }
 });
