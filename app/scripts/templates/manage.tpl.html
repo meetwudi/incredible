@@ -1,3 +1,7 @@
 <div class="row clearfix">
-  <in-record ng-repeat="record in manage.records"></in-record>
+  <in-record ng-repeat="record in manage.visibleRecords"></in-record>
+</div>
+
+<div class="row">
+  <pagination total-items="manage.records.length" items-per-page="manage.itemsPerPage" previous-text="上一页" next-text="下一页" ng-model="manage.currentPage" ng-change="manage.updateVisibleRecords()"></pagination>
 </div>

@@ -48,11 +48,21 @@ angular.module('incredible.controllers', [])
 .controller('ManageController', function($scope, recordService) {
   $scope.manage = {};
   $scope.manage.records = [];
+  $scope.manage.visibleRecords = [];
+  $scope.manage.currentPage = 1;
+  $scope.manage.itemsPerPage = 24;
   $scope.manage.refresh = function() {
     recordService.getAll(function(err, records) {
       $scope.manage.records = records;
+      $scope.manage.updateVisibleRecords();
       $scope.$apply();
     });
+  };
+  $scope.manage.updateVisibleRecords = function() {
+    var currentPage = $scope.manage.currentPage,
+      itemsPerPage = $scope.manage.itemsPerPage,
+      firstItemIdx = itemsPerPage * (currentPage - 1);
+    $scope.manage.visibleRecords = $scope.manage.records.slice(firstItemIdx, firstItemIdx + itemsPerPage); 
   };
   $scope.manage.refresh();
   $scope.$on('recordService:recordsChanged', $scope.manage.refresh);
