@@ -57,7 +57,8 @@ angular.module('incredible.services', [])
   var DataStore = require('nedb'),
     db = {
       setting: new DataStore({ filename: 'data/setting.nedb', autoload: true }),
-      record: new DataStore({ filename: 'data/record.nedb', autoload: true })
+      record: new DataStore({ filename: 'data/record.nedb', autoload: true }),
+      preset: new DataStore({ filename: 'data/preset.nedb', autoload: true })
     };
 
   return db;
@@ -89,8 +90,8 @@ angular.module('incredible.services', [])
   this.remove = function(doc, done) {
     done = done ? done : function() {};
     db.remove(doc, function(err, numRemoved) {
-      done(numRemoved);
       $rootScope.$broadcast('recordService:recordsChanged');
+      if (done) done(err, numRemoved);
     });
   };
   this.insert = function(doc, done) {
@@ -99,6 +100,28 @@ angular.module('incredible.services', [])
     doc.createdAt = Date.now();
     db.insert(doc, function(err, doc) {
       $rootScope.$broadcast('recordService:recordsChanged');
+      if(done) done(err, doc);
+    });
+  };
+})
+
+
+.service('presetService', function(dbService) {
+  var db = dbService.preset;
+  this.getAll = function(done) {
+    db.find({}).sort({ createdAt: -1 }).exec(done);
+  };
+  this.remove = function(doc, done) {
+    done = done ? done : function() {};
+    db.remove(doc, function(err, numRemoved) {
+      if (done) done(err, numRemoved);
+    });
+  };
+  this.insert = function(doc, done) {
+    delete doc.$$hashKey;
+    done = done ? done : function() {};
+    doc.createdAt = Date.now();
+    db.insert(doc, function(err, doc) {
       if(done) done(err, doc);
     });
   };

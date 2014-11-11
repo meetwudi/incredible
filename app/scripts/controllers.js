@@ -66,4 +66,9 @@ angular.module('incredible.controllers', [])
   };
   $scope.manage.refresh();
   $scope.$on('recordService:recordsChanged', $scope.manage.refresh);
+})
+
+
+.controller('PresetManageController', function($scope) {
+  
 });

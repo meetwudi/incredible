@@ -97,4 +97,13 @@ angular.module('incredible.directives', [])
       clipboard.set(scope.record.url);
     }
   }
+})
+
+.directive('inPresetManage', function() {
+  return {
+    templateUrl: 'scripts/directive-templates/in-preset-manage.html',
+    link: function(scope, ele, attrs) {
+      
+    }
+  }
 });
