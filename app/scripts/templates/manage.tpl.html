@@ -1,3 +1,9 @@
+<div class="row" ng-if="manage.visibleRecords.length == 0">
+  <div class="alert alert-info" role="alert">
+    亲，您还没有上传过图片：）
+  </div>
+</div>
+
 <div class="row clearfix ov">
   <in-record ng-repeat="record in manage.visibleRecords"></in-record>
 </div>
