@@ -1,0 +1,15 @@
+<form role="form" class="mt20" novalidate>
+  <div class="form-group">
+    <label for="bucket_name">Bucket Name</label>
+    <input in-pastable type="text" class="form-control" id="bucket_name" ng-model="setting.bucketName">
+  </div>
+  <div class="form-group">
+    <label for="access_key">Access Key</label>
+    <input in-pastable type="text" class="form-control" id="access_key" ng-model="setting.accessKey">
+  </div>
+  <div class="form-group">
+    <label for="secret_key">Secret Key</label>
+    <input in-pastable type="text" class="form-control" id="secret_key" ng-model="setting.secretKey">
+  </div>
+  <button type="submit" class="btn btn-default btn-primary" ng-click="applySetting()">应用</button>
+</form>

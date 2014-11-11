@@ -65,6 +65,13 @@ angular.module('incredible.directives', [])
 })
 
 
+.directive('inSettingForm', function() {
+  return {
+    templateUrl: 'scripts/directive-templates/in-setting-form.html'
+  }
+})
+
+
 .directive('inNav', function($route) {
   return {
     templateUrl: 'scripts/directive-templates/in-nav.html',
