@@ -24,15 +24,22 @@ angular.module('incredible.controllers', [])
   $scope.upload.doUpload = function() {
     var async = require('async'), 
       uploadFile = uploadService.uploadFile;
-    async.map($scope.upload.pendingFiles, uploadFile, function(err, urls) {
-      console.log(urls);
+    $scope.upload.uploading = true;
+    $scope.upload.uploadTotal = $scope.upload.pendingFiles.length;
+    $scope.upload.uploadedTotal = 0;
+    async.mapSeries($scope.upload.pendingFiles, uploadFile, function(err) {
+      $scope.upload.uploading = false;
+      $scope.$apply();
     });
   };
+  $scope.upload.doReset = function() {
+    $scope.upload.pendingFiles = [];
+  };
   $scope.$on('uploadService:fileUploaded', function(e, uploadedFile) {
-    console.log(uploadedFile);
     $scope.upload.pendingFiles = _.filter($scope.upload.pendingFiles, function(file) {
       return file.key != uploadedFile.key;
     });
+    $scope.upload.uploadedTotal ++;
     $scope.$apply();
   });
 });

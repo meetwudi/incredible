@@ -20,32 +20,28 @@ angular.module('incredible.services', [])
   }
 
   function uploadFile(file, done) {
-    settingService.get(function(setting) {
-      
+    settingService.get(function(err, setting) {
+      var localFile = file.path,
+        bucketName = setting.bucketName,
+        extra = new qiniu.io.PutExtra(),
+        token;
+      qiniu.conf.ACCESS_KEY = setting.accessKey;
+      qiniu.conf.SECRET_KEY = setting.secretKey;
 
-      settingService.get(function(err, setting) {
-        var localFile = file.path,
-          bucketName = setting.bucketName,
-          extra = new qiniu.io.PutExtra(),
-          token;
-        qiniu.conf.ACCESS_KEY = setting.accessKey;
-        qiniu.conf.SECRET_KEY = setting.secretKey;
+      token = getUploadToken(bucketName);
 
-        token = getUploadToken(bucketName);
-
-        qiniu.io.putFile(token, file.key, localFile, extra, function(err, ret) {
-          if(!err) {
-            file.url = 'http://' + bucketName + '.qiniudn.com/' + ret.key;
-            $rootScope.$broadcast('uploadService:fileUploaded', file);
-            if (done) {
-              done(err, file);
-            }
-          } else {
-            done(err);
+      qiniu.io.putFile(token, file.key, localFile, extra, function(err, ret) {
+        if(!err) {
+          file.url = 'http://' + bucketName + '.qiniudn.com/' + ret.key;
+          $rootScope.$broadcast('uploadService:fileUploaded', file);
+          recordService.insert(file);
+          if (done) {
+            done(err, file);
           }
-        });
+        } else {
+          done(err);
+        }
       });
-
     });
   }
 

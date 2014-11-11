@@ -1,9 +1,22 @@
+<div class="row" ng-if="upload.pendingFiles.length == 0">
+  <div class="alert alert-info" role="alert">
+    当前没有上传任务。将要上传的图片拖放到Incredible窗口添加图片。
+  </div>
+</div>
+
 <div class="row clearfix">
   <in-pending-file ng-repeat="file in upload.pendingFiles"></in-pending-file>
 </div>
 
 
 <div class="row text-center">
-  <a class="btn btn-primary" ng-click="upload.doUpload()">上传</a>
-  <a class="btn btn-primary">重置</a>
+  <a class="btn btn-primary" ng-click="upload.doUpload()" ng-disabled="upload.uploading">上传</a>
+  <a class="btn btn-primary" ng-click="upload.doReset()" ng-disabled="upload.uploading">重置</a>
+</div>
+
+<div class="row" ng-if="upload.uploading">
+  <div class="progress mt20">
+    <div class="progress-bar" role="progressbar" aria-valuenow="{{upload.uploadedTotal*100/upload.uploadTotal}}" aria-valuemin="0" aria-valuemax="100">
+    {{upload.uploadedTotal*100/upload.uploadTotal | number:0}}%
+  </div>
 </div>
