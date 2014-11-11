@@ -21,8 +21,11 @@
   },
   "homepage": "https://github.com/tjwudi/incredible",
   "dependencies": {
+    "async": "^0.9.0",
     "nedb": "^0.11.1",
-    "qiniu": "^6.1.6"
+    "qiniu": "^6.1.6",
+    "sha1": "^1.1.0",
+    "underscore": "^1.7.0"
   },
   "window": {
     "min_width": 860,

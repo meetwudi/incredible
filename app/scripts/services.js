@@ -10,7 +10,7 @@ angular.module('incredible.services', [])
 })
 
 
-.factory('uploadService', function(nodeModService, settingService, recordService) {
+.factory('uploadService', function($rootScope, settingService, recordService) {
   var qiniu = require('qiniu'),
     fs = require('fs');
 
@@ -19,29 +19,33 @@ angular.module('incredible.services', [])
     return putPolicy.token();
   }
 
-  function uploadFile(localFile, key, bucketName) {
+  function uploadFile(file, done) {
     settingService.get(function(setting) {
-      var bucketName = setting.bucketName,
-        extra = new qiniu.io.PutExtra(),
-        token;
-      qiniu.conf.ACCESS_KEY = setting.accessKey;
-      qiniu.conf.SECRET_KEY = setting.secretKey;
-      token = getUploadToken(bucketName);
+      
 
-      qiniu.io.putFile(token, key, localFile, extra, function(err, ret) {
-        if(!err) {
-          var url = 'http://' + bucketName + '.qiniudn.com/' + ret.key;
-          var gui = require('nw.gui'),
-          clipboard = gui.Clipboard.get();
-          clipboard.set(url);
-          alert('Image url copied to clipboard.');
-          recordService.insert({
-            url: url
-          });
-        } else {
-          console.log(err);
-        }
+      settingService.get(function(err, setting) {
+        var localFile = file.path,
+          bucketName = setting.bucketName,
+          extra = new qiniu.io.PutExtra(),
+          token;
+        qiniu.conf.ACCESS_KEY = setting.accessKey;
+        qiniu.conf.SECRET_KEY = setting.secretKey;
+
+        token = getUploadToken(bucketName);
+
+        qiniu.io.putFile(token, file.key, localFile, extra, function(err, ret) {
+          if(!err) {
+            file.url = 'http://' + bucketName + '.qiniudn.com/' + ret.key;
+            $rootScope.$broadcast('uploadService:fileUploaded', file);
+            if (done) {
+              done(err, file);
+            }
+          } else {
+            done(err);
+          }
+        });
       });
+
     });
   }
 
@@ -68,7 +72,7 @@ angular.module('incredible.services', [])
   var db = dbService.setting;
   this.get = function(done) {
     db.findOne({}, function(err, doc) {
-      done(doc);
+      done(err, doc);
     });
   };
   this.save = function(setting, done) {

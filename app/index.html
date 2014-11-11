@@ -7,27 +7,28 @@
   <link rel="stylesheet" href="styles/incredible.css">
 </head>
 <body>
-  <div class="container">
-    <main class="in-drop-area" in-drop-file>
-      Drag &amp; Drop Your Image Here!
-    </main>
-  </div>
-  
-  <div class="container" >
-    <div class="row">
-      <div class="col-sm-6 col-sm-offset-3">
-        <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation"><a href="#/">Records</a></li>
-          <li role="presentation"><a href="#/setting">Setting</a></li>
+
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <img alt="Brand" src="images/logo.png" height="20" width="20">
+        </a>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">上传</a></li>
+          <li><a href="#">管理</a></li>
+          <li><a href="#setting">设置</a></li>
         </ul>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-6 col-sm-offset-3">
-        <div ng-view></div>
-      </div>
+  </nav>
+
+  <div class="inner-wrap" in-drop-area>
+    <div class="container in-container">
+      <div ng-view></div>
     </div>
   </div>
+  
 
   
   <script src="bower_components/jquery/dist/jquery.js"></script>

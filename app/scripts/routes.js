@@ -5,7 +5,7 @@ angular.module('incredible.routes', ['ngRoute'])
     templateUrl: 'scripts/templates/setting.tpl.html',
     controller: 'SettingController'
   }).when('/', {
-    templateUrl: 'scripts/templates/record.tpl.html',
-    controller: 'RecordController'
+    templateUrl: 'scripts/templates/upload.tpl.html',
+    controller: 'UploadController'
   });
 });

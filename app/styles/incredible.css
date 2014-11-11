@@ -1,3 +1,18 @@
+/* page layout */
+html, body {
+  height: 100%;
+}
+.inner-wrap {
+  padding-top: 50px;
+  height: 100%;
+}
+
+/* directive in-container */
+.in-container {
+  padding-top: 54px;
+  width: 800px !important;
+}
+
 /* directive in-drop-area*/
 .in-drop-area {
   height: 300px;
@@ -32,9 +47,27 @@
   color: whitesmoke;
 }
 
+/* directive: in-pending-file */
+.in-pending-file {
+  overflow: hidden;
+  float: left;
+}
+  .in-pending-file .image-wrap {
+    height: 80px;
+    width: 80px;
+    border-radius: 10px;
+    margin: 0 10px 10px 10px;
+    overflow: hidden;
+  }
+
+  .in-pending-file img {
+    width: 100%;
+    height: 100%;
+  }
 
 
 /* utils */
 .clearfix {
   overflow: auto;
 }
+
