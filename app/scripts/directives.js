@@ -71,7 +71,6 @@ angular.module('incredible.directives', [])
     link: function(scope, ele, attrs) {
       scope.nav = {};
       scope.$on('$routeChangeSuccess', function() {
-        console.log($route);
         scope.nav.currentController = $route.current.$$route.controller;
       });
     }

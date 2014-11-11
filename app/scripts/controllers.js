@@ -13,7 +13,7 @@ angular.module('incredible.controllers', [])
   });
 })
 
-.controller('UploadController', function($scope, uploadService, recordService) {
+.controller('UploadController', function($scope, uploadService) {
   var _ = require('underscore');
   $scope.upload = {};
   $scope.upload.pendingFiles = [];
@@ -42,4 +42,18 @@ angular.module('incredible.controllers', [])
     $scope.upload.uploadedTotal ++;
     $scope.$apply();
   });
+})
+
+
+.controller('ManageController', function($scope, recordService) {
+  $scope.manage = {};
+  $scope.manage.records = [];
+  $scope.manage.refresh = function() {
+    recordService.getAll(function(err, records) {
+      $scope.manage.records = records;
+      $scope.$apply();
+    });
+  };
+  $scope.manage.refresh();
+  $scope.$on('recordService:recordsChanged', $scope.manage.refresh);
 });

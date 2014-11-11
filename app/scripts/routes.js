@@ -7,5 +7,8 @@ angular.module('incredible.routes', ['ngRoute'])
   }).when('/', {
     templateUrl: 'scripts/templates/upload.tpl.html',
     controller: 'UploadController'
+  }).when('/manage', {
+    templateUrl: 'scripts/templates/manage.tpl.html',
+    controller: 'ManageController'
   });
 });

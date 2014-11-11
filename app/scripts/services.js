@@ -72,7 +72,6 @@ angular.module('incredible.services', [])
     });
   };
   this.save = function(setting, done) {
-    console.log(setting);
     db.remove({}, { multi: true }, function(err, numRemoved) {
       db.insert(setting, function(err, newDoc) {
         done(numRemoved);
@@ -85,9 +84,7 @@ angular.module('incredible.services', [])
 .service('recordService', function(dbService, $rootScope) {
   var db = dbService.record;
   this.getAll = function(done) {
-    db.find({}).sort({ createdAt: -1 }).exec(function(err, docs) {
-      done(docs);
-    });
+    db.find({}).sort({ createdAt: -1 }).exec(done);
   };
   this.remove = function(doc, done) {
     done = done ? done : function() {};
@@ -97,11 +94,12 @@ angular.module('incredible.services', [])
     });
   };
   this.insert = function(doc, done) {
+    delete doc.$$hashKey;
     done = done ? done : function() {};
     doc.createdAt = Date.now();
     db.insert(doc, function(err, doc) {
-      done(doc);
-      $rootScope.$broadcast('recordService:recordsChanged')
+      $rootScope.$broadcast('recordService:recordsChanged');
+      if(done) done(err, doc);
     });
   };
 });
