@@ -1,5 +1,13 @@
-<div class="in-record">
-  <div class="image-wrap">
-    <img ng-src="{{record.url}}" alt="">
-  </div>
+<div class="in-record dropdown" >
+  <a href class="dropdown-toggle">
+    <div class="image-wrap">
+        <img ng-src="{{record.url}}" alt="">
+    </div>
+  </a>
+  <ul class="dropdown-menu dropdown-manage">
+    <li role="presentation" class="dropdown-header">复制地址</li>
+    <li>
+      <a href in-copy in-copy-type="standard" record="record">原图</a>
+    </li>
+  </ul>
 </div>

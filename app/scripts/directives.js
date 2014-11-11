@@ -82,4 +82,19 @@ angular.module('incredible.directives', [])
       });
     }
   }
+})
+
+
+.directive('inCopy', function() {
+  return {
+    scope: {
+      'inCopyType': '@',
+      'record': '='
+    },
+    link: function(scope, ele, attrs) {
+      var gui = require('nw.gui'),
+        clipboard = gui.Clipboard.get();
+      clipboard.set(scope.record.url);
+    }
+  }
 });

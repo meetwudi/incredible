@@ -7,6 +7,11 @@ html, body {
   height: 100%;
 }
 
+/* reset */
+.dropdown-menu {
+  min-width: initial !important;
+}
+
 /* directive in-container */
 .in-container {
   padding-top: 54px;
@@ -49,7 +54,6 @@ html, body {
 
 /* directive: in-pending-file */
 .in-pending-file, .in-record {
-  overflow: hidden;
   float: left;
 
   .image-wrap {
@@ -67,6 +71,12 @@ html, body {
   }
 }
 
+/* directive: dropdown-menu */
+.dropdown-manage {
+  top: 40px;
+  left: 40px;
+}
+
 
 /* utils */
 .clearfix {
@@ -77,3 +87,6 @@ html, body {
   margin-top: 20px;
 }
 
+.ov {
+  overflow: visible !important;
+}
