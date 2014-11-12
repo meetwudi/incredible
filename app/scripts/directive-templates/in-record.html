@@ -7,7 +7,8 @@
   <ul class="dropdown-menu dropdown-manage">
     <li role="presentation" class="dropdown-header">复制地址</li>
     <li>
-      <a href in-copy in-copy-type="standard" record="record">原图</a>
+      <a href in-copy in-copy-props="{}" record="record">原图</a>
+      <a href in-copy ng-repeat="preset in manage.presets" in-copy-props="{{preset.props|json}}" record="record">{{preset.name}}</a>
     </li>
   </ul>
 </div>

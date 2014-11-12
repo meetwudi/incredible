@@ -65,7 +65,7 @@ angular.module('incredible.directives', [])
 })
 
 
-.directive('inSettingForm', function() {
+.directive('inSettingForm', function(presetService) {
   return {
     templateUrl: 'scripts/directive-templates/in-setting-form.html'
   }
@@ -85,16 +85,20 @@ angular.module('incredible.directives', [])
 })
 
 
-.directive('inCopy', function() {
+.directive('inCopy', function(presetUrlService) {
   return {
     scope: {
-      'inCopyType': '@',
+      'inCopyProps': '@',
       'record': '='
     },
     link: function(scope, ele, attrs) {
       var gui = require('nw.gui'),
         clipboard = gui.Clipboard.get();
-      clipboard.set(scope.record.url);
+      ele.bind('click', function() {
+        var props = JSON.parse(scope.inCopyProps),
+          url = presetUrlService.getUrl(scope.record.url, props);
+        clipboard.set(url);
+      });
     }
   }
 })

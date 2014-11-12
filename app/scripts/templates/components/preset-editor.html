@@ -1,0 +1,19 @@
+<div class="in-modal-container">
+  <form role="form">
+    <div class="form-group">
+      <label for="name">预设名称</label>
+      <input type="text" class="form-control" id="name" ng-model="item.name" required ng-change="presetEditor.output()">
+    </div>
+    <div class="form-group">
+      <label for="name">高（0代表不限制）</label>
+      <input type="number" class="form-control" id="name" ng-model="item.props.h" required>
+    </div>
+    <div class="form-group">
+      <label for="name">宽（0代表不限制）</label>
+      <input type="number" class="form-control" id="name" ng-model="item.props.w" required>
+    </div>
+    <div class="form-group mt20">
+      <button type="submit" class="btn btn-default" ng-click="presetEditor.save()">完成</button>
+    </div>
+  </form>
+</div>

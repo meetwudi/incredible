@@ -4,7 +4,7 @@ angular.module('incredible.controllers', [])
   $scope.setting = {};
   $scope.applySetting = function() {
     settingService.save($scope.setting, function() {
-      alert('Your setting have been saved.');
+      alert('设置保存成功。');
     });
   };
   settingService.get(function(err, setting) {
@@ -12,6 +12,7 @@ angular.module('incredible.controllers', [])
     $scope.$digest();
   });
 })
+
 
 .controller('UploadController', function($scope, uploadService) {
   var _ = require('underscore');
@@ -45,16 +46,22 @@ angular.module('incredible.controllers', [])
 })
 
 
-.controller('ManageController', function($scope, recordService) {
+.controller('ManageController', function($scope, recordService, presetService) {
   $scope.manage = {};
   $scope.manage.records = [];
   $scope.manage.visibleRecords = [];
   $scope.manage.currentPage = 1;
   $scope.manage.itemsPerPage = 24;
-  $scope.manage.refresh = function() {
+  $scope.manage.refreshRecords = function() {
     recordService.getAll(function(err, records) {
       $scope.manage.records = records;
       $scope.manage.updateVisibleRecords();
+      $scope.$digest();
+    });
+  };
+  $scope.manage.refreshPresets = function() {
+    presetService.getAll(function(err, presets) {
+      $scope.manage.presets = presets;
       $scope.$digest();
     });
   };
@@ -64,8 +71,10 @@ angular.module('incredible.controllers', [])
       firstItemIdx = itemsPerPage * (currentPage - 1);
     $scope.manage.visibleRecords = $scope.manage.records.slice(firstItemIdx, firstItemIdx + itemsPerPage); 
   };
-  $scope.manage.refresh();
-  $scope.$on('recordService:recordsChanged', $scope.manage.refresh);
+  $scope.manage.refreshRecords();
+  $scope.manage.refreshPresets();
+  $scope.$on('recordService:recordsChanged', $scope.manage.refreshRecords);
+  $scope.$on('presetService:presetsChanged', $scope.manage.refreshPresets);
 })
 
 

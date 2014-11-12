@@ -150,4 +150,13 @@ angular.module('incredible.services', [])
       }
     };
   };
+})
+
+
+.service('presetUrlService', function() {
+  this.getUrl = function(url, props) {
+    return require('underscore').reduce(props, function(url, val, key) {
+      return url + '/' + key + '/' + val;
+    }, url + '?imageView2/1');
+  };
 });
