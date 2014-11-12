@@ -47,7 +47,8 @@ angular.module('incredible.directives', [])
     require: 'ngModel',
     link: function(scope, ele, attrs, ngModelController) {
       var gui = require('nw.gui'),
-          clipboard = gui.Clipboard.get();
+          clipboard = gui.Clipboard.get(),
+          handler = 
       $(ele).bind('keyup', 'ctrl+v', function(e) {
         ngModelController.$setViewValue(clipboard.get('text'));
         ngModelController.$render();
