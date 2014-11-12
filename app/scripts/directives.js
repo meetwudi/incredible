@@ -109,6 +109,21 @@ angular.module('incredible.directives', [])
 .directive('inPreset', function() {
   return {
     restrict: 'A',
+    controller: function($scope, $modal) {
+      var _ = require('underscore');
+      $scope.preset = {};
+      $scope.preset.removePreset = function() {
+        var idx = _.indexOf($scope.presetManage.presets, $scope.item);
+        $scope.presetManage.presets.splice(idx, 1);
+      };
+      $scope.preset.editPreset = function() {
+        $modal.open({
+          templateUrl: 'scripts/templates/components/preset-editor.html',
+          scope: $scope,
+          controller: 'PresetEditorController'
+        });
+      };
+    },
     link: function(scope, ele, attrs) {
 
     }

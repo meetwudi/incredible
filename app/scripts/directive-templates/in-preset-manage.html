@@ -8,18 +8,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="preset in presetManage.presets" in-preset class="in-preset">
+      <tr ng-repeat="item in presetManage.presets" in-preset class="in-preset">
         <td colspan="1">
-          {{preset.name}}
+          {{item.name}}
         </td>
         <td colspan="8">
-            <span class="badge badge-prop" ng-class="{'badge-prop--dimension':(key=='w'||key=='h')}" ng-repeat="(key, value) in preset.props"> 
+            <span class="badge badge-prop" ng-class="{'badge-prop--dimension':(key=='w'||key=='h')}" ng-repeat="(key, value) in item.props"> 
               {{key}}{{value}}
             </span>
         </td>
         <td colspan="1">
-          <a href="#" ng-click="preset.editPreset()">编辑</a>
-          <a href="#" ng-click="preset.removePreset()">删除</a>
+          <a href ng-click="preset.editPreset()">编辑</a>
+          <a href ng-click="preset.removePreset()">删除</a>
         </td>
       </tr>
     </tbody>

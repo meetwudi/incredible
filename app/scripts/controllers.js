@@ -74,4 +74,12 @@ angular.module('incredible.controllers', [])
   $scope.presetManage.presets = [
     {name:'博客图片',props:{'w':50,'h':50}}
   ];
+})
+
+
+.controller('PresetEditorController', function($scope, $modalInstance) {
+  $scope.presetEditor = {};
+  $scope.presetEditor.save = function() {
+    $modalInstance.close();
+  };
 });
