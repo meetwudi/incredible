@@ -1,0 +1,28 @@
+<div ng-controller="PresetManageController">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td colspan="1">名称</td>
+        <td colspan="8">属性</td>
+        <td colspan="1">操作</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="preset in presetManage.presets" in-preset class="in-preset">
+        <td colspan="1">
+          {{preset.name}}
+        </td>
+        <td colspan="8">
+            <span class="badge badge-prop" ng-class="{'badge-prop--dimension':(key=='w'||key=='h')}" ng-repeat="(key, value) in preset.props"> 
+              {{key}}{{value}}
+            </span>
+        </td>
+        <td colspan="1">
+          <a href="#" ng-click="preset.editPreset()">编辑</a>
+          <a href="#" ng-click="preset.removePreset()">删除</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

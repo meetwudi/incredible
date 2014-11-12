@@ -70,5 +70,8 @@ angular.module('incredible.controllers', [])
 
 
 .controller('PresetManageController', function($scope) {
-  
+  $scope.presetManage = {};
+  $scope.presetManage.presets = [
+    {name:'博客图片',props:{'w':50,'h':50}}
+  ];
 });

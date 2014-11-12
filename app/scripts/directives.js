@@ -101,9 +101,16 @@ angular.module('incredible.directives', [])
 
 .directive('inPresetManage', function() {
   return {
-    templateUrl: 'scripts/directive-templates/in-preset-manage.html',
+    templateUrl: 'scripts/directive-templates/in-preset-manage.html'
+  }
+})
+
+
+.directive('inPreset', function() {
+  return {
+    restrict: 'A',
     link: function(scope, ele, attrs) {
-      
+
     }
   }
 });
