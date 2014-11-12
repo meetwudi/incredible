@@ -106,14 +106,15 @@ angular.module('incredible.services', [])
 })
 
 
-.service('presetService', function(dbService) {
+.service('presetService', function(dbService, $rootScope) {
   var db = dbService.preset;
   this.getAll = function(done) {
     db.find({}).sort({ createdAt: -1 }).exec(done);
   };
   this.remove = function(doc, done) {
     done = done ? done : function() {};
-    db.remove(doc, function(err, numRemoved) {
+    db.remove({'_id':doc['_id']}, function(err, numRemoved) {
+      $rootScope.$broadcast('presetService:presetsChanged');
       if (done) done(err, numRemoved);
     });
   };
@@ -122,7 +123,31 @@ angular.module('incredible.services', [])
     done = done ? done : function() {};
     doc.createdAt = Date.now();
     db.insert(doc, function(err, doc) {
+      $rootScope.$broadcast('presetService:presetsChanged');
       if(done) done(err, doc);
     });
+  };
+  this.update = function(doc, done) {
+    db.update({'_id': doc['_id']}, doc, {}, function(err, numAffected) {
+      $rootScope.$broadcast('presetService:presetsChanged');
+      if (done) done(err, numAffected);
+    });
+  };
+  this.save = function(doc, done) {
+    if (doc["_id"]) {
+      this.update(doc, done);
+    }
+    else {
+      this.insert(doc, done);
+    };
+  };
+  this.newInstance = function() {
+    return {
+      name: "",
+      props: {
+        h: 0,
+        w: 0
+      }
+    };
   };
 });

@@ -9,7 +9,7 @@ angular.module('incredible.controllers', [])
   };
   settingService.get(function(err, setting) {
     $scope.setting = setting;
-    $scope.$apply();
+    $scope.$digest();
   });
 })
 
@@ -19,7 +19,7 @@ angular.module('incredible.controllers', [])
   $scope.upload.pendingFiles = [];
   $scope.$on('inDropArea:newfile', function(e, file) {
     $scope.upload.pendingFiles.push(file);
-    $scope.$apply();
+    $scope.$digest();
   });
   $scope.upload.doUpload = function() {
     var async = require('async'), 
@@ -29,7 +29,7 @@ angular.module('incredible.controllers', [])
     $scope.upload.uploadedTotal = 0;
     async.mapSeries($scope.upload.pendingFiles, uploadFile, function(err) {
       $scope.upload.uploading = false;
-      $scope.$apply();
+      $scope.$digest();
     });
   };
   $scope.upload.doReset = function() {
@@ -40,7 +40,7 @@ angular.module('incredible.controllers', [])
       return file.key != uploadedFile.key;
     });
     $scope.upload.uploadedTotal ++;
-    $scope.$apply();
+    $scope.$digest();
   });
 })
 
@@ -55,7 +55,7 @@ angular.module('incredible.controllers', [])
     recordService.getAll(function(err, records) {
       $scope.manage.records = records;
       $scope.manage.updateVisibleRecords();
-      $scope.$apply();
+      $scope.$digest();
     });
   };
   $scope.manage.updateVisibleRecords = function() {
@@ -69,17 +69,36 @@ angular.module('incredible.controllers', [])
 })
 
 
-.controller('PresetManageController', function($scope) {
+.controller('PresetManageController', function($scope, presetService, $modal) {
   $scope.presetManage = {};
-  $scope.presetManage.presets = [
-    {name:'博客图片',props:{'w':50,'h':50}}
-  ];
+  $scope.presetManage.refresh = function() {
+    presetService.getAll(function(err, presets) {
+      $scope.presetManage.presets = presets;
+      $scope.$digest();
+    });
+  };
+  $scope.presetManage.newPreset = function() {
+    $scope.newItem = presetService.newInstance();
+    $modal.open({
+      templateUrl: 'scripts/templates/components/preset-editor.html',
+      scope: $scope,
+      controller: 'PresetEditorController'
+    });
+  };
+  $scope.presetManage.refresh();
+  $scope.$on('presetService:presetsChanged', $scope.presetManage.refresh);
 })
 
 
-.controller('PresetEditorController', function($scope, $modalInstance) {
+.controller('PresetEditorController', function($scope, $modalInstance, presetService) {
   $scope.presetEditor = {};
+  if (!$scope.item) {
+    $scope.item = {};
+  }
   $scope.presetEditor.save = function() {
-    $modalInstance.close();
+    presetService.save($scope.item, function(err) {
+      $modalInstance.close();
+    });
   };
+  // $scope.presetEditor.output = function() {  console.log($scope); };
 });

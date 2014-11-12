@@ -21,7 +21,7 @@ angular.module('incredible.directives', [])
         var files = [].slice.call(e.originalEvent.dataTransfer.files);
         files.forEach(function(file) {
           // 计算文件的Key
-          file.key = Date.now() + '-' + sha1(file.name) + path.extname(file.name);
+          file.key = sha1(Date.now() + '') + '-' + sha1(file.name) + path.extname(file.name);
           scope.$broadcast('inDropArea:newfile', file);
         });
         return false;
@@ -99,14 +99,16 @@ angular.module('incredible.directives', [])
   }
 })
 
+
 .directive('inPresetManage', function() {
   return {
+    scope: {},
     templateUrl: 'scripts/directive-templates/in-preset-manage.html'
   }
 })
 
 
-.directive('inPreset', function() {
+.directive('inPreset', function(presetService) {
   return {
     restrict: 'A',
     controller: function($scope, $modal) {
@@ -115,6 +117,7 @@ angular.module('incredible.directives', [])
       $scope.preset.removePreset = function() {
         var idx = _.indexOf($scope.presetManage.presets, $scope.item);
         $scope.presetManage.presets.splice(idx, 1);
+        presetService.remove($scope.item);
       };
       $scope.preset.editPreset = function() {
         $modal.open({
@@ -123,9 +126,6 @@ angular.module('incredible.directives', [])
           controller: 'PresetEditorController'
         });
       };
-    },
-    link: function(scope, ele, attrs) {
-
     }
   }
 });
