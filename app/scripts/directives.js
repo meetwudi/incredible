@@ -86,7 +86,7 @@ angular.module('incredible.directives', [])
 })
 
 
-.directive('inCopy', function(presetUrlService) {
+.directive('inCopy', function(presetUrlService, $rootScope) {
   return {
     scope: {
       'inCopyProps': '@',
@@ -99,6 +99,10 @@ angular.module('incredible.directives', [])
         var props = JSON.parse(scope.inCopyProps),
           url = presetUrlService.getUrl(scope.record.url, props);
         clipboard.set(url);
+        $rootScope.$broadcast('inGlobalNotification:newNotification', {
+          type: 'success',
+          content: '地址复制成功'
+        });
       });
     }
   }
@@ -143,12 +147,17 @@ angular.module('incredible.directives', [])
     templateUrl: 'scripts/directive-templates/in-global-notification.html',
     replace: true,
     controller: function($scope) {
+      var _ = require('underscore');
       $scope.notifications = [];
       $scope.$on('inGlobalNotification:newNotification', function(e, notification) {
-        $scope.notifications.push(notification);
-        $timeout(function() {
-          $scope.notification.splice(0, 1);
-        }, 3000);
+        if (!_.findWhere($scope.notifications, notification)) {
+          $scope.notifications.push(notification);
+          console.log($scope.notifications);
+          $scope.$digest();
+          $timeout(function() {
+            $scope.notifications.splice(0, 1);
+          }, 3000);
+        }
       });
     }
   }

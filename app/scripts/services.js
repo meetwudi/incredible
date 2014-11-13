@@ -22,11 +22,23 @@ angular.module('incredible.services', [])
   function uploadFile(file, done) {
     settingService.get(function(err, setting) {
       var localFile = file.path,
-        bucketName = setting.bucketName,
         extra = new qiniu.io.PutExtra(),
         token;
+
+      if (!setting || !setting.bucketName || !setting.accessKey || !setting.secretKey) {
+        $rootScope.$broadcast('inGlobalNotification:newNotification', {
+          type: 'danger',
+          content: '您设置的七牛SDK信息不完整，请在设置中填写完整'
+        });
+        $rootScope.$broadcast('uploadService:uploadSuspended');
+        return;
+      }
+
+      var bucketName = setting.bucketName;
       qiniu.conf.ACCESS_KEY = setting.accessKey;
       qiniu.conf.SECRET_KEY = setting.secretKey;
+
+
 
       token = getUploadToken(bucketName);
 

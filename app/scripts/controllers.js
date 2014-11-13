@@ -1,10 +1,13 @@
 angular.module('incredible.controllers', [])
 
-.controller('SettingController', function($scope, settingService) {
+.controller('SettingController', function($scope, $rootScope, settingService) {
   $scope.setting = {};
   $scope.applySetting = function() {
     settingService.save($scope.setting, function() {
-      alert('设置保存成功。');
+      $rootScope.$broadcast('inGlobalNotification:newNotification', {
+        type: 'success',
+        content: '设置保存成功'
+      });
     });
   };
   settingService.get(function(err, setting) {
@@ -42,6 +45,9 @@ angular.module('incredible.controllers', [])
     });
     $scope.upload.uploadedTotal ++;
     $scope.$digest();
+  });
+  $scope.$on('uploadService:uploadSuspended', function(e) {
+    $scope.upload.uploading = false;
   });
 })
 
