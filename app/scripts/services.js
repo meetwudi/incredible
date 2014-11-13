@@ -169,8 +169,15 @@ angular.module('incredible.services', [])
 
 .service('presetUrlService', function() {
   this.getUrl = function(url, props) {
-    return require('underscore').reduce(props, function(url, val, key) {
+    if (!props || !props.mode) {
+      return url;
+    }
+    var _ = require('underscore'),
+      _props = _.clone(props);
+    url = url + '?imageView2/' + _props.mode;
+    delete _props.mode;
+    return require('underscore').reduce(_props, function(url, val, key) {
       return url + '/' + key + '/' + val;
-    }, url + '?imageView2/1');
+    }, url + '/1');
   };
 });
