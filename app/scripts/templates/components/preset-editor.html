@@ -1,17 +1,53 @@
 <div class="in-modal-container">
+  <p>
+    <a in-external-link href="http://developer.qiniu.com/docs/v6/api/reference/fop/image/imageview2.html">参数文档&nbsp;<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a>
+  </p>
   <form role="form">
     <div class="form-group">
       <label for="name">预设名称</label>
       <input type="text" class="form-control" id="name" ng-model="item.name" required ng-change="presetEditor.output()">
-    </div>
+    </div> <!-- 名称 -->
+
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="name">w参数（宽参数）</label>
+          <input type="number" class="form-control" id="name" ng-model="item.props.h" required>
+        </div>
+      </div>
+   
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="name">h参数（高参数）</label>
+          <input type="number" class="form-control" id="name" ng-model="item.props.w" required>
+        </div>
+      </div>
+    </div> <!-- 宽高 -->
+
     <div class="form-group">
-      <label for="name">高（0代表不限制）</label>
-      <input type="number" class="form-control" id="name" ng-model="item.props.h" required>
+      <div>
+        <label for="mode">模式参数</label>
+      </div>
+      <label class="radio-inline">
+        <input type="radio" name="mode" value="0" ng-model="item.props.mode"> 0
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="mode" value="1" ng-model="item.props.mode"> 1
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="mode" value="2" ng-model="item.props.mode"> 2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="mode" value="3" ng-model="item.props.mode"> 3
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="mode" value="4" ng-model="item.props.mode"> 4
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="mode" value="5" ng-model="item.props.mode"> 5
+      </label>
     </div>
-    <div class="form-group">
-      <label for="name">宽（0代表不限制）</label>
-      <input type="number" class="form-control" id="name" ng-model="item.props.w" required>
-    </div>
+    
     <div class="form-group mt20">
       <button type="submit" class="btn btn-default" ng-click="presetEditor.save()">完成</button>
     </div>

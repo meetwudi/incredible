@@ -93,7 +93,6 @@ angular.module('incredible.controllers', [])
     });
   };
   $scope.presetManage.newPreset = function() {
-    $scope.newItem = presetService.newInstance();
     $modal.open({
       templateUrl: 'scripts/templates/components/preset-editor.html',
       scope: $scope,
@@ -108,7 +107,7 @@ angular.module('incredible.controllers', [])
 .controller('PresetEditorController', function($scope, $modalInstance, presetService) {
   $scope.presetEditor = {};
   if (!$scope.item) {
-    $scope.item = {};
+    $scope.item = presetService.newInstance();
   }
   $scope.presetEditor.save = function() {
     presetService.save($scope.item, function(err) {

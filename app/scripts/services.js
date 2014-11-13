@@ -140,6 +140,7 @@ angular.module('incredible.services', [])
     });
   };
   this.update = function(doc, done) {
+    delete doc.$$hashKey;
     db.update({'_id': doc['_id']}, doc, {}, function(err, numAffected) {
       $rootScope.$broadcast('presetService:presetsChanged');
       if (done) done(err, numAffected);
@@ -158,7 +159,8 @@ angular.module('incredible.services', [])
       name: "",
       props: {
         h: 0,
-        w: 0
+        w: 0,
+        mode: 0
       }
     };
   };

@@ -13,8 +13,11 @@
           {{item.name}}
         </td>
         <td colspan="8">
-            <span class="badge badge-prop" ng-class="{'badge-prop--dimension':(key=='w'||key=='h')}" ng-repeat="(key, value) in item.props"> 
-              {{key}}{{value}}
+            <span class="badge badge-prop" ng-class="
+              {'badge-prop--dimension':key=='w'||key=='h', 
+              'badge-prop--mode':key=='mode'}" 
+            ng-repeat="(key, value) in item.props">
+                {{key}}{{value}}
             </span>
         </td>
         <td colspan="1">

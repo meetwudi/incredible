@@ -161,4 +161,15 @@ angular.module('incredible.directives', [])
       });
     }
   }
+})
+
+.directive('inExternalLink', function() {
+  return {
+    link: function(scope, ele, attrs) {
+      ele.bind('click', function(e) {
+        e.preventDefault();
+        require('nw.gui').Shell.openExternal(ele.attr('href'));
+      });
+    }
+  }
 });
