@@ -1,4 +1,5 @@
-angular.module('incredible', ['incredible.controllers', 
+angular.module('incredible', ['ngAnimate',
+  'incredible.controllers', 
   'incredible.services',
   'incredible.directives',
   'incredible.routes',

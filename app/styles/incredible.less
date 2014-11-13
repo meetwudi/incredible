@@ -91,6 +91,25 @@ html, body {
   }
 }
 
+/* directive: in-global-notification */
+.in-global-notification {
+  width: 200px;
+  margin-left: -100px;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  z-index: 20000000;
+  .alert {
+    transition: all .5s ease-in-out;
+    opacity: 0;
+  }
+  .alert.ng-enter {
+    opacity: 1;
+  }
+  .alert.ng-leave {
+    opacity: 0;
+  }
+}
 
 /* utils */
 .clearfix {

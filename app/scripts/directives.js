@@ -133,4 +133,23 @@ angular.module('incredible.directives', [])
       };
     }
   }
+})
+
+
+.directive('inGlobalNotification', function($timeout) {
+  return {
+    scope: {},
+    restrict: 'E',
+    templateUrl: 'scripts/directive-templates/in-global-notification.html',
+    replace: true,
+    controller: function($scope) {
+      $scope.notifications = [];
+      $scope.$on('inGlobalNotification:newNotification', function(e, notification) {
+        $scope.notifications.push(notification);
+        $timeout(function() {
+          $scope.notification.splice(0, 1);
+        }, 3000);
+      });
+    }
+  }
 });

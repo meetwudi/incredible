@@ -34,7 +34,10 @@
     "max_height": 513,
     "min_height": 513,
     "height": 513,
-    "toolbar": false,
-    "frame": false
+    "toolbar": true,
+    "frame": true
+  },
+  "devDependencies": {
+    "node-webkit-builder": "^0.2.0"
   }
 }
