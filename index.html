@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Incredible by tjwudi</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Incredible</h1>
+        <h2>为网络写作者提供的一款小而美，操作简单的图片云存储与云处理工具</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/tjwudi/incredible/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/tjwudi/incredible/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/tjwudi/incredible" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="incredible" class="anchor" href="#incredible" aria-hidden="true"><span class="octicon octicon-link"></span></a>Incredible</h1>
+
+<p>Incredible是为网络写作者提供的一款小而美，操作简单的图片云存储与云处理工具。Incredible基于<a href="http://qiniu.com">七牛云存储</a>。</p>
+
+<p>你可以通过Incredible快速地将本地图片上传到七牛云存储上，并获得云处理过的图片地址。</p>
+
+<h3>
+<a id="下载" class="anchor" href="#%E4%B8%8B%E8%BD%BD" aria-hidden="true"><span class="octicon octicon-link"></span></a>下载</h3>
+
+<ul>
+<li><a href="http://ftp.leapoahead.com/download/incredible/incredible.0.3.1.mac.zip">Mac客户端 v0.3.1</a></li>
+</ul>
+
+<h3>
+<a id="使用" class="anchor" href="#%E4%BD%BF%E7%94%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用</h3>
+
+<h5>
+<a id="准备" class="anchor" href="#%E5%87%86%E5%A4%87" aria-hidden="true"><span class="octicon octicon-link"></span></a>准备</h5>
+
+<p>使用Incredible前，你需要到<a href="http://qiniu.com">七牛云存储</a>申请账号并登陆。登陆后，创建一个新的空间。请注意该空间必须为公开空间。</p>
+
+<p><img src="http://cloudfront-tjwudi.qiniudn.com/5d4faf71cfe1021e75ca7636b4a99c69c6819d1e-b0df9d6fac6a47f4370e2b37ddec70f5e5cbc10c.png?imageView2/2/h/500/w/0/q/50" alt="创建新空间"></p>
+
+<p>这里假设我们新建空间名为<code>cloudfront-tjwudi</code>。接下来在账号设置-密钥中，复制并保存你的AK和SK，供后续步骤使用。</p>
+
+<p><img src="http://cloudfront-tjwudi.qiniudn.com/7e64556fcd1c8103a96a92b5a5051a40d352bfae-e03218877fe38b2b5769d8c34290db64af72a1f6.png?imageView2/2/h/500/w/0/q/50" alt="查看AK和SK"></p>
+
+<h5>
+<a id="配置" class="anchor" href="#%E9%85%8D%E7%BD%AE" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置</h5>
+
+<p>启动Incredible，在设置-七牛设置中，设置你的Bucket Name（刚才创建的空间名）。并用<strong>Ctrl+V</strong>复制你的AK和SK。（请Mac客户端用户注意，必须使用Ctrl键。我会在后续版本中改进这一问题）</p>
+
+<p><img src="http://cloudfront-tjwudi.qiniudn.com/bffab816c8d7db7c948a9064c73fbdd50d04e330-c3e80eead993cc65b20aa54e637f35ddd5bb95b1.png?imageView2/2/h/500/w/0/q/50" alt="配置七牛"></p>
+
+<h5>
+<a id="上传并获取图片地址" class="anchor" href="#%E4%B8%8A%E4%BC%A0%E5%B9%B6%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>上传并获取图片地址</h5>
+
+<p>将要上传的图片选中（可以为多张），并拖拽到Incredible**上传界面**。点击“上传”即可上传所有图片。</p>
+
+<p><img src="http://cloudfront-tjwudi.qiniudn.com/fc708eb5c8dddd3eb12a8ac21cb26054241990f9-5c20dcbcfbab07ab6c2df7e27444d5ac2afca569.png?imageView2/2/h/500/w/0/q/50" alt="上传图片"></p>
+
+<p>进入<strong>管理界面</strong>，右击图片将图片地址复制到剪贴板中。</p>
+
+<p><img src="http://cloudfront-tjwudi.qiniudn.com/dfd7c88f9cc9e7f3096b50f01f0b56847dca8517-278cadb5c5a600fd354bbb4a32acf34407bf98f0.png?imageView2/2/h/500/w/0/q/50" alt="复制图片地址"></p>
+
+<h5>
+<a id="预设" class="anchor" href="#%E9%A2%84%E8%AE%BE" aria-hidden="true"><span class="octicon octicon-link"></span></a>预设</h5>
+
+<p>如果想要对图片进行处理，可以在设置界面-预设管理添加预设。<strong>预设对已经上传过的图片也有效，因为图片处理是在云端完成的</strong>。</p>
+
+<p><img src="http://cloudfront-tjwudi.qiniudn.com/ad8abb6b39fcf48d95e7c1941a760b4f98061cc6-bd473197c461193ea9b6d317f4c236910d065887.png?imageView2/2/h/500/w/0/q/50" alt="预设管理"></p>
+
+<p>参数设置方法请查看<a href="http://developer.qiniu.com/docs/v6/api/reference/fop/image/imageview2.html">七牛图片处理文档</a>。</p>
+
+<p>添加预设后，在<strong>管理界面</strong>右击图片，点击预设名，就可以获得该预设下对应的图片地址到剪贴板了。：）</p>
+
+<h5>
+<a id="测试和文档" class="anchor" href="#%E6%B5%8B%E8%AF%95%E5%92%8C%E6%96%87%E6%A1%A3" aria-hidden="true"><span class="octicon octicon-link"></span></a>测试和文档</h5>
+
+<p>暂时不具备代码测试用例和文档，在接下来的版本中会立刻跟上。</p>
+
+<h5>
+<a id="贡献" class="anchor" href="#%E8%B4%A1%E7%8C%AE" aria-hidden="true"><span class="octicon octicon-link"></span></a>贡献</h5>
+
+<p>欢迎你为Incredible贡献代码！Incredible基于Node webkit，因此你需要下载<a href="https://github.com/rogerwang/node-webkit">Node Webkit</a>。你可以通过下面任何方式给Incredible贡献建议或者代码</p>
+
+<ul>
+<li>Fork</li>
+<li>发送Pull Request</li>
+<li>创建issue</li>
+<li><a href="mailto:webmaster@leapoahead.com">发送email</a></li>
+</ul>
+
+<h5>
+<a id="版本记录" class="anchor" href="#%E7%89%88%E6%9C%AC%E8%AE%B0%E5%BD%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>版本记录</h5>
+
+<ul>
+<li>0.3.1 (Nov 15th 2014) 第一个正式发布版本</li>
+</ul>
+
+<h3>
+<a id="开源许可证" class="anchor" href="#%E5%BC%80%E6%BA%90%E8%AE%B8%E5%8F%AF%E8%AF%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>开源许可证</h3>
+
+<p>MIT</p>
+      </section>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-50843289-5");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
