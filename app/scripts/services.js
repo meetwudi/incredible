@@ -160,7 +160,8 @@ angular.module('incredible.services', [])
       props: {
         h: 0,
         w: 0,
-        mode: 0
+        mode: 0,
+        q: 85
       }
     };
   };
@@ -176,8 +177,10 @@ angular.module('incredible.services', [])
       _props = _.clone(props);
     url = url + '?imageView2/' + _props.mode;
     delete _props.mode;
+    console.log(_props);
+    console.log(url);
     return require('underscore').reduce(_props, function(url, val, key) {
       return url + '/' + key + '/' + val;
-    }, url + '/1');
+    }, url);
   };
 });

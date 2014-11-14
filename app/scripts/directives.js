@@ -152,7 +152,6 @@ angular.module('incredible.directives', [])
       $scope.$on('inGlobalNotification:newNotification', function(e, notification) {
         if (!_.findWhere($scope.notifications, notification)) {
           $scope.notifications.push(notification);
-          console.log($scope.notifications);
           $scope.$digest();
           $timeout(function() {
             $scope.notifications.splice(0, 1);
