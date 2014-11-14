@@ -45,6 +45,7 @@ Incredible是为网络写作者提供的一款小而美，操作简单的图片�
 
 参数设置方法请查看[七牛图片处理文档](http://developer.qiniu.com/docs/v6/api/reference/fop/image/imageview2.html)。
 
+添加预设后，在**管理界面**右击图片，点击预设名，就可以获得该预设下对应的图片地址到剪贴板了。：）
 
 
 
