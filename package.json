@@ -38,6 +38,7 @@
     "frame": true
   },
   "devDependencies": {
-    "node-webkit-builder": "^0.2.0"
+    "grunt": "^0.4.5",
+    "grunt-ngdocs": "^0.2.6"
   }
 }
