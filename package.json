@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-ngdocs": "^0.2.6"
+    "grunt-ngdocs": "^0.2.6",
+    "load-grunt-tasks": "^1.0.0"
   }
 }
