@@ -51,6 +51,10 @@ angular.module('incredible.services', [])
             done(err, file);
           }
         } else {
+          $rootScope.$broadcast('inGlobalNotification:newNotification', {
+            type: 'danger',
+            content: err.error
+          });
           done(err);
         }
       });
