@@ -11,13 +11,6 @@ Incredible是为网络写作者提供的一款小而美，操作简单的图片�
 ### 下载
 - [Mac客户端 v0.3.2](http://ftp.leapoahead.com/download/incredible/incredible.0.3.2.mac.zip)
 
-### 注意
-
-由于七牛官方策略改变，新的空间将不能使用`qiniudn.com`的域名，详情请见[issue #10]。Incredible 0.3.1及之前的版本都是将`qiniudn.com`写死在代码中的，且目前尚未发布对应的更新。因此，为了临时解决这个问题，你可以手动将源码中app/scripts/services.js中的`qiniudn.com`改成对应的新域名。
-
-我会尽快发布新的版本。
-
-
 
 ### 使用
 ##### 准备
@@ -72,6 +65,7 @@ Incredible是为网络写作者提供的一款小而美，操作简单的图片�
 
 ##### 版本记录
 
+- 0.3.2 (Jan 1st 2015) 对应七牛官方域名策略变更
 - 0.3.1 (Nov 15th 2014) 第一个正式发布版本
 
 
