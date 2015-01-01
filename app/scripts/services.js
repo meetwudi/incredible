@@ -25,7 +25,7 @@ angular.module('incredible.services', [])
         extra = new qiniu.io.PutExtra(),
         token;
 
-      if (!setting || !setting.bucketName || !setting.accessKey || !setting.secretKey) {
+      if (!setting || !setting.bucketName || !setting.bucketUrl || !setting.accessKey || !setting.secretKey) {
         $rootScope.$broadcast('inGlobalNotification:newNotification', {
           type: 'danger',
           content: '您设置的七牛SDK信息不完整，请在设置中填写完整'
@@ -44,7 +44,7 @@ angular.module('incredible.services', [])
 
       qiniu.io.putFile(token, file.key, localFile, extra, function(err, ret) {
         if(!err) {
-          file.url = 'http://' + bucketName + '.qiniudn.com/' + ret.key;
+          file.url = 'http://' + setting.bucketUrl + '/' + ret.key;
           $rootScope.$broadcast('uploadService:fileUploaded', file);
           recordService.insert(file);
           if (done) {
@@ -89,6 +89,9 @@ angular.module('incredible.services', [])
     });
   };
   this.save = function(setting, done) {
+    if (setting.bucketUrl) {
+      setting.bucketUrl = setting.bucketUrl.replace(/^http\:\/\//, '').replace(/\/+$/, '');
+    }
     db.remove({}, { multi: true }, function(err, numRemoved) {
       db.insert(setting, function(err, newDoc) {
         done(numRemoved);

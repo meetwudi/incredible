@@ -31,9 +31,9 @@
     "min_width": 860,
     "max_width": 860,
     "width": 860,
-    "max_height": 513,
-    "min_height": 513,
-    "height": 513,
+    "max_height": 560,
+    "min_height": 560,
+    "height": 560,
     "toolbar": true,
     "frame": true
   },
