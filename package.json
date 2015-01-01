@@ -1,6 +1,6 @@
 {
   "name": "incredible",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "快速将图片传送到七牛CDN上并进行处理的工具",
   "main": "app/index.html",
   "scripts": {
