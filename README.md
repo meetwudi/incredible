@@ -9,7 +9,7 @@ Incredible是为网络写作者提供的一款小而美，操作简单的图片�
 
 
 ### 下载
-- [Mac客户端 v0.3.1](http://ftp.leapoahead.com/download/incredible/incredible.0.3.1.mac.zip)
+- [Mac客户端 v0.3.2](http://ftp.leapoahead.com/download/incredible/incredible.0.3.2.mac.zip)
 
 ### 注意
 
