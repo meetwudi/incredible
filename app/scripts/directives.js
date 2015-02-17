@@ -7,12 +7,6 @@ angular.module('incredible.directives', [])
         e.preventDefault();
         return false;
       });
-      // ele.bind('dragenter', function(e) {
-      //   $(this).addClass('in-drop-area--hover');
-      // });
-      // ele.bind('drop dragleave', function(e) {
-      //   $(this).removeClass('in-drop-area--hover');
-      // });
       ele.bind('drop', function(e) {
         e.preventDefault();
         // Drag & Drop happens here
